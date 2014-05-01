@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Ember Starter Kit</title>
+  <link rel="stylesheet" href="css/normalize.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link href="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+  <script type="text/x-handlebars">
+    <nav class="navbar navbar-default" role="navigation">
+      <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">WordHasher</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav">
+            <li class="active">{{#link-to 'about'}}About{{/link-to}}</li>
+            <li>{{#link-to 'contact'}}Contact{{/link-to}}</li>
+            <li>{{#link-to 'words'}}Words{{/link-to}}</li>
+          </ul>
+          
+          <ul class="nav navbar-nav navbar-right">
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">View by Category<b class="caret"></b></a>
+              <ul class="dropdown-menu">
+                <li><a href="#">Happy words</a></li>
+                <li><a href="#">Sad words</a></li>
+                <li><a href="#">Mad words</a></li>
+                <li class="divider"></li>
+                <li><a href="#">Separated link</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div><!-- /.navbar-collapse -->
+      </div><!-- /.container-fluid -->
+    </nav>
+    {{outlet}}
+  </script>
+
+  <script type="text/x-handlebars" id="about">
+    <p>This is an ongoing experiment that will utilize Ember.js, D3.js, and the Twitter API to provide data visualizations associated with specific words.</p> 
+    <p>Currently the app uses Fixtures for data until I integrate with the Twitter API.</p>
+    <p>This is a project by web developer Kathryn Hough. See my code on <a href="http://github.com/kathrynhough">GitHub</a>, the come over and say hi to me on <a href="http://twitter.com/kathrynhough">Twitter</a>.</p> 
+  </script>
+
+   <script type="text/x-handlebars" id="contact">
+    <p>Questions? Comments? Want to shower me with praise? <a href="mailto:kathrynmhough@gmail.com">Email me!</a></p>
+   </script>
+
+  <script type="text/x-handlebars" id="words">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-8">
+          {{outlet}}
+        </div> 
+        <div class="col-md-4">
+          <div class="list-group">
+            <a href="#" class="list-group-item active">
+              Select a Word
+            </a>
+            {{#each}}
+              {{#link-to 'word' this class="list-group-item"}} {{title}} {{/link-to}}
+            {{/each}}  
+          </div>
+        </div> 
+      </div>  
+    </div>  
+  </script>
+
+  <script type="text/x-handlebars" id="word">
+  <h1>{{title}}</h1>
+  <h3>{{sentiment.happy}} % happy</h3>
+  <h5>{{category}}</h5>
+  </script>
+
+  <script src="js/libs/jquery-1.10.2.js"></script>
+  <script src="js/libs/handlebars-1.1.2.js"></script>
+  <script src="js/libs/ember-1.5.1.js"></script>
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/d3/3.4.6/d3.min.js"></script>
+  <script src="js/app.js"></script>
+  <!-- to activate the test runner, add the "?test" query string parameter -->
+  <script src="tests/runner.js"></script>
+</body>
+</html>
